@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:swipe_deck/swipe_deck.dart';
@@ -44,38 +43,33 @@ class TestPage extends StatelessWidget {
         title: const Text("Swipe Deck"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 600,
-              child: Center(
-                child: SwipeDeck(
-                  startIndex: 3,
-                  emptyIndicator: const Center(
-                    child: Text("Nothing Here"),
-                  ),
-                  cardSpreadInDegrees: 5,
-                  onChange: (index) {
-                    log(IMAGES[index]);
-                  },
-                  widgets: IMAGES
-                      .map((e) => GestureDetector(
-                            onTap: () {
-                              log(e);
-                            },
-                            child: ClipRRect(
-                                borderRadius: borderRadius,
-                                child: Image.asset(
-                                  "images/$e.jpg",
-                                  fit: BoxFit.cover,
-                                )),
-                          ))
-                      .toList(),
-                ),
+        child: SizedBox(
+          width: 600,
+          child: Center(
+            child: SwipeDeck(
+              startIndex: 3,
+              emptyIndicator: const Center(
+                child: Text("Nothing Here"),
               ),
+              cardSpreadInDegrees: 6,
+              onChange: (index) {
+                log(IMAGES[index]);
+              },
+              widgets: IMAGES
+                  .map((e) => GestureDetector(
+                        onTap: () {
+                          log(e);
+                        },
+                        child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Image.asset(
+                              "images/$e.jpg",
+                              fit: BoxFit.cover,
+                            )),
+                      ))
+                  .toList(),
             ),
-          ],
+          ),
         ),
       ),
     );
